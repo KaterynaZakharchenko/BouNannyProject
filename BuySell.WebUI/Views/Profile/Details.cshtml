@@ -1,0 +1,38 @@
+﻿@model BouNanny.Models.Client
+
+@{
+    ViewBag.Title = "Details";
+}
+
+        <!-- Portfolio Item Heading -->
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">
+            @Model.Name
+        </h1>
+    </div>
+</div>
+<!-- /.row -->
+<!-- Portfolio Item Row -->
+<div class="row">
+
+    <div class="col-md-4">
+        @Html.GravatarImage(@Model.Email, new GravatarOptions { Size = 300, CssClass = "img-responsive" })
+    </div>
+
+    <div class="col-md-4">
+        <h3>About</h3>
+        <ul>
+            <li>Username: @Html.DisplayFor(model => model.Username)</li>
+            <li>Location: @Html.DisplayFor(model => model.City.Name), @Html.DisplayFor(model => model.State.Name), @Html.DisplayFor(model => model.Country.Name)</li>
+            <li>Phone: @Html.DisplayFor(model => model.MobileNumber)</li>
+            <li>Joined On: @Html.DisplayFor(model => model.JoinDate)</li>
+
+            <li>Ads: @Html.DisplayFor(model => model.Ads.Count)</li>
+            <li>Reviews: @Html.DisplayFor(model => model.Reviews.Count)</li>
+        </ul>
+    </div>
+
+    @Html.Partial("_ProfileControlPartial")
+</div>
+<!-- /.row -->

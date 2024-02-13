@@ -1,0 +1,75 @@
+﻿@model IEnumerable<BouNanny.Models.Ad>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>All Offers</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table" style="border:groove">
+    <tr style="background-color: rgb(208, 238, 150)">
+	    <th>
+		    Name
+	    </th>
+	    <th>
+		    @Html.DisplayNameFor(model => model.Age)
+	    </th>
+	    <th>
+		    Sex
+	    </th>
+	    <th>
+		    @Html.DisplayNameFor(model => model.Price)
+	    </th>
+	    <th>
+		    Professional Level
+	    </th>
+	    <th>
+		    Time Period
+	    </th>
+	    <th>
+		    @Html.DisplayNameFor(model => model.Description)
+	    </th>
+	    <th>
+		    Location
+	    </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+	    <td style="background-color: rgb(238, 246, 196)">
+		    @Html.DisplayFor(modelItem => item.Title)
+	    </td>
+	    <td>
+		    @Html.DisplayFor(modelItem => item.Age)
+	    </td>
+	    <td>
+		    @Html.DisplayFor(modelItem => item.Sex)
+	    </td>
+	    <td>
+		    @Html.DisplayFor(modelItem => item.Price)
+	    </td>
+	    <td>
+		    @Html.DisplayFor(modelItem => item.Level.Name)
+	    </td>
+	    <td>
+		    @Html.DisplayFor(modelItem => item.TimePeriod.TimePeriodType)
+	    </td>
+	    <td>
+		    @Html.DisplayFor(modelItem => item.Description)
+	    </td>
+	    <td>
+            @Html.DisplayFor(modelItem => item.City.Name)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+        </td>
+    </tr>
+}
+
+</table>

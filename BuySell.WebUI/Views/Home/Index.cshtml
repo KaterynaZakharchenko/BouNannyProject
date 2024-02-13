@@ -1,0 +1,47 @@
+﻿@using BouNanny.Models
+@model BouNanny.WebUI.Models.HomeViewModel
+
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<h2>BouNanny</h2>
+<div class="row">
+    @Html.Partial("_CategoriesPartial")
+</div>
+<div class="col-md-9">
+	<div class="row">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h2 class="panel-title">Recent Offers</h2>
+            </div>
+			<div class="panel-body">
+
+	        	@foreach (Ad item in Model.Ads)
+				 {
+					 <div class="col-sm-4 col-lg-4 col-md-4">
+						 <div class="thumbnail">
+							 <a href="@Url.Action("Details", "Ads", new { id = item.ID })">
+								 <img title="@item.Title" src="~/images/empty_profile.png" alt="@item.Title">
+	                         </a>
+							 <div class="caption">
+								 <h4 title="@item.Title">
+									 @Html.ActionLink(item.Title, "Details", "Ads", new { id = item.ID }, null)
+                                 </h4>
+                                 <p>@Html.DisplayFor(modelItem => item.Age) Y/O, @Html.DisplayFor(modelItem => item.Sex), Professional level: @Html.DisplayFor(modelItem => item.Level.Name)</p>
+                                 <p>Time Period: @Html.DisplayFor(modelItem => item.TimePeriod.TimePeriodType).</p>
+                                 <p>Description: @Html.DisplayFor(modelItem => item.Description)</p>
+                             </div>
+							 <div class="ratings">
+								 <p title="@item.Price $" class="pull-right"><i class="glyphicon glyphicon-tags"></i>&nbsp;&nbsp; @Html.DisplayFor(modelItem => item.Price)</p>
+								 <p title="@item.City.Name, @item.State.Name, @item.Country.Name">
+									 <i class="glyphicon glyphicon-map-marker"></i>&nbsp;@Html.DisplayFor(modelItem => item.City.Name)
+                                 </p>
+                             </div>
+                         </div>
+                     </div>
+                 }
+            </div>
+        </div>
+    </div>
+</div>

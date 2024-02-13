@@ -1,0 +1,24 @@
+﻿<!-- Sidebar -->
+<div id="sidebar-wrapper">
+    <ul class="sidebar-nav">
+        <li class="sidebar-brand">
+            @Html.ActionLink("BouNanny - Admin", "Index", "Home", new { area = "Dashboard" }, new { @class = "navbar-brand" })
+        </li>
+        <li>
+            @Html.ActionLink("Web Home", "Index", "Home", new { area = "" }, null)
+        </li>
+        <li>
+            @Html.ActionLink("Ads", "Index", "Ads")
+        </li>
+        <li>
+            @Html.ActionLink("Clients", "Index", "Clients")
+        </li>
+        <li>
+            @Html.ActionLink("Reviews", "Index", "Reviews")
+        </li>
+        <li>
+            @Html.ActionLink("Roles", "Index", "Roles")
+        </li>
+    </ul>
+</div>
+<!-- /#sidebar-wrapper -->

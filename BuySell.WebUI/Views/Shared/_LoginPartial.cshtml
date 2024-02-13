@@ -1,0 +1,37 @@
+﻿@if (Request.IsAuthenticated)
+{
+    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+    {
+    @Html.AntiForgeryToken()
+
+        var manager = new UserManager<ApplicationUser>(new Microsoft.AspNet.Identity.EntityFramework.UserStore<ApplicationUser>(new ApplicationDbContext()));
+        var currentUser = manager.FindById(User.Identity.GetUserId());
+
+        <div class="navbar-image">
+            @Html.GravatarImage(currentUser.Email, new GravatarOptions { Size = 30, CssClass = "img-circle" })
+        </div>
+
+        <ul class="nav navbar-nav navbar-right">
+            <li>
+                @Html.ActionLink("Hello " + currentUser.Name + "!", "Details", null, routeValues: null, htmlAttributes: new { title = "Manage", @class="dropdown-toggle", data_toggle="dropdown", role="button", aria_haspopup="true", aria_expanded="false" })
+                <ul class="dropdown-menu">
+                    <li>
+                        @Html.ActionLink("Profile", "Details", "Profile")
+                    </li>
+                    @if (User.IsInRole("Admin") || User.IsInRole("Manager"))
+                    {
+                        <li>@Html.ActionLink("Admin Dashboard", "Index", "Home", new { area = "Dashboard" }, null)</li>
+                    }
+                </ul>
+            </li>
+            <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+        </ul>
+    }
+}
+else
+{
+    <ul class="nav navbar-nav navbar-right">
+        <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+        <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+    </ul>
+}
